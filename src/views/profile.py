@@ -9,11 +9,11 @@
 import logging
 import datetime
 from google.appengine.api import users
-
 from google.appengine.ext import db
 from helpers import HandlerBase, require_login, each_profiles
 from helpers import SimplePaginator
-from models.profile import Profile
+from models.profile import Profile, UserAuth
+
 from models.follow import Follow
 from models.blip import Blip, BlipLink
 import settings
@@ -140,4 +140,31 @@ class HomePage(HandlerBase):
         is_self = True
         return self.render('home.html', locals())
 
+class ResetPasswordPage(HandlerBase):
+    def post(self):
+        errors = []
+        email = self.request.get('email', '')
+        user_auth = None
+        if not email:
+            errors.append('Email cannot be empty')
+        else:
+            user_auth = UserAuth.gql('WHERE email = :1', email).get()
+            if user_auth is None:
+                errors.append('Local user of %s not found' % email)
 
+        password = self.request.get('password', '')
+        if not password:
+            errors.append('Password is empty')
+        password2 = self.request.get('password2', '')
+        logging.info('%s: %s' % (password2, password))
+        if password2 != password:
+            errors.append('Password retyped wrong')
+        if errors:
+            return self.get(errors=errors)
+        user_auth.set_password(password)
+        self.response.out.write('Password reset ok.')
+
+    def get(self, errors=None):
+        return self.render('reset_password.html', locals())
+
+        

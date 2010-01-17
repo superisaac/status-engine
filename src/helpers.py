@@ -121,6 +121,7 @@ class HandlerBase(webapp.RequestHandler):
         if user.check_password(password):
             self.set_cookie('AUTH_USER', user.key())
             self.set_cookie('SESSION', user.session_key)
+            return user
 
     def logout(self):
         #self.response.headers['Set-Cookie'] = 'AUTH_USER=; path=/;'

@@ -13,12 +13,14 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from views.admin import BuildBlipLink, CleanCache
 from views.migration import MigrationPage
+from views.profile import ResetPasswordPage
 
 url_mapping = [
     #(r'/siteadmin/initdata$', InitData),
     (r'/siteadmin/clean_cache$', CleanCache),
     (r'/siteadmin/build_bliplink$', BuildBlipLink),
     (r'/siteadmin/migration$', MigrationPage),
+    (r'/siteadmin/reset_password', ResetPasswordPage),
     ]
 
 app = webapp.WSGIApplication(url_mapping, debug=True)

@@ -39,8 +39,7 @@ class LoginPage(HandlerBase):
         google_login_url = users.create_login_url(continue_to)
         errors = []
         local_user = UserAuth.gql('WHERE email=:1', email).get()
-        if local_user:
-            self.authenticate(local_user, password)
+        if local_user and self.authenticate(local_user, password):
             login_user = local_user.get_user()
             profile = Profile.gql('WHERE user = :1', login_user).get()
             if not profile:
