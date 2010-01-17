@@ -7,7 +7,7 @@ You can update status, paste a image(link), flash video or map, hold meetings an
 A demo site is at http://status-engine.appspot.com
 
 h3. Features
-* update status to all subscribers(follow)
+* update status to all subscribers(follow), with attachments(image, map, flash video)
 
 * create meetings, invite people to join the meeting
 
