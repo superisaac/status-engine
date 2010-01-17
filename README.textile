@@ -6,11 +6,18 @@ You can update status, paste a image(link), flash video or map, hold meetings an
 
 A demo site is at http://status-engine.appspot.com
 
+h3. Features
+* update status to all subscribers(follow)
+
+* create meetings, invite people to join the meeting
+
+* write articles, edit articles in a wiki style.
+
 h2. Installation
 
-# cd src
+* cd src
 
-# create a python file local_settings.py, copy and override the following variables
+* create a python file local_settings.py, copy and override the following variables
 
 ** *NEWS_USER*   _user *news* is a pseudo user that notify latest changes within the site._
 
@@ -20,17 +27,17 @@ h2. Installation
  not be showed correctly.
 
 
-# cp app.yaml.sample app.yaml
+* cp app.yaml.sample app.yaml
 
 change app.yaml, set application to the name of your google app engine
 
-# deploy to appspot
+* deploy to appspot
 
 appcfg.py update src
 
 Index building may take some hours
 
-# Do migration after the indexes are build, by visit http://_yourapp_.appspot.com/siteadmin/migration from a browser
+* Do migration after the indexes are build, by visit http://_yourapp_.appspot.com/siteadmin/migration from a browser
 
-Then the site is ready now.
+* Then the site is ready now.
  
