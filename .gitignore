@@ -1,0 +1,6 @@
+.*
+*~
+*.pyc
+setup-env.sh
+local_settings.py
+app.yaml
