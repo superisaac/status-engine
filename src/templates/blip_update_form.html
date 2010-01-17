@@ -1,0 +1,49 @@
+<form action="{% block form_action %}/blip/update{% endblock %}" id="update" method="POST">
+  <div class="blip-update">
+    <span>{% block update_title %}What's new?{% endblock %}</span><br/>
+    <textarea name="text" id="id_text"></textarea>
+    <p class="commands">
+      <span class="button right"><input class="text-right" type="submit" value="Update"/></span>
+      <span> +
+	<a href="#require-image-url" onclick="editor.showDialog(this, 'image'); return false; ">image</a>
+	<a href="#require-flash-url" onclick="editor.showDialog(this, 'flash'); return false;">flash</a>
+	<a href="#require-map" onclick="editor.showDialog(this, 'map'); return false;">map</a>
+      </span>
+    </p>
+    <input type="hidden" name="attachment" id="id_attachment" value=""/>
+    <ul id="attachments"></ul>
+    <div class="clear"></div>
+  </div>
+</form>
+
+<div id="attachment-stage"></div>
+<div id="require-image-url" style="display:none;">
+  <form action="#" onsubmit="editor.dialogSubmit(this); return false;">
+    Image url:<br/>
+    <input type="text" id="url" value=""/><br/>
+    <input type="submit" name="ok" value="attach"/>
+  </form>
+</div>
+
+<div id="require-flash-url" style="display:none;">
+  <form action="#" onsubmit="editor.dialogSubmit(this); return false;">
+    Flash swf url:<br/>
+    <input type="text" id="url" value=""/><br/>
+    <input type="submit" name="ok" value="attach"/>
+  </form>
+</div>
+
+<div id="require-map" style="display:none;">
+  <form action="#" onsubmit="editor.dialogSubmit(this); return false;">
+    <iframe id="map-edit" class="map-frame" scrolling="no" frameborder="0" noresize="noresize" src="" width="440" height="300"></iframe>
+    <br/>
+    <input type="submit" name="ok" value="attach"/>
+  </form>
+</div>
+<script language="javascript">
+  var editor;
+  $(document).ready(function($) {
+     editor = new AttachEditor();
+     $(this).hide();
+  });
+</script>

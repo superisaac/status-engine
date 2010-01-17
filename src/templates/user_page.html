@@ -1,0 +1,53 @@
+{% extends 'base_2col.html' %}
+
+{% block page_title %}
+{{ profile.fullname }}
+{% endblock page_title %}
+
+{% block left_column %}
+<div class="blip-list clearfix">
+&nbsp;
+ {% for p in blips %}
+   {% include 'entry_b.html' %}
+ {% endfor %}
+</div>
+<p>
+  {% if paginator.has_prev %}
+  <a href="?page={{ paginator.prev_page }}">&lt;&lt;Newer</a>
+  {% endif %}
+
+  {% if paginator.has_next %}
+  <a href="?page={{ paginator.next_page }}">Older&gt;&gt;</a>
+  {% endif %}
+</p>
+{% endblock left_column %}
+
+{% block right_column %}
+<h1>{{ profile.fullname }} ({{ profile.nickname }})</h1>
+<div class="">
+  <a href="{{ profile.href }}"><img src="{{ profile.avatar_href_small }}"/></a>
+</div>
+{% if not is_self %}
+<div>
+  {% if not has_followed %}
+    <span><a href="{{ profile.href }}/follow" >follow</a></span>
+  {% else %}
+    <span><a href="{{ profile.href }}/unfollow" >unfollow</a></span>
+  {% endif %}
+</div>
+{% endif %}
+<h3>Followers({{ profile.cnt_follower }})</h3>
+<div class="clearfix">
+{% for p in follower_profiles %}
+  {% include 'tiny_user.html' %}
+{% endfor %}
+</div>
+
+<h3>Followings({{ profile.cnt_following }})</h3>
+<div class="clearfix">
+{% for p in followee_profiles %}
+   {% include 'tiny_user.html' %}
+{% endfor %}
+</div>
+
+{% endblock right_column %}

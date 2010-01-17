@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block page_title %}Sign up{% endblock %}
+
+{% block body %}
+<h1>Sign up</h1>
+
+{% for err in errors %}
+<p>{{ err }}</p>
+{% endfor %}
+<form id="signup" action="{{ self.request.uri }}" method="POST">
+  <span> Email: </span> <br/>
+  <input type="email" name="email" id="id_email" value=""/><br/>
+  <span> Password: </span><br/>
+  <input type="password" name="password" id="id_password" value=""/><br/>
+  <span> Retype: </span><br/>
+  <input type="password" name="password2" id="id_password2" value=""/><br/>
+  <input type="submit" value="OK"/> <input type="reset"/>
+</form>
+{% endblock body %}
+
+{% block js_css %}
+  <script language="javascript">
+$(document).ready(function() {
+  $('form#signup').submit(function() {
+     if($('#id_password', this).val() == '' ||
+        $('#id_email', this).val() == '') {
+         alert('Email and password field cannot be empty');
+         return false;
+     }
+     if($('#id_password', this).val() != $('#id_password2', this).val()) {
+        alert("Password not match!");
+        return false;
+     }
+     return true;
+   });
+});
+  </script>
+{% endblock js_css %}

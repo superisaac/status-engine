@@ -1,0 +1,30 @@
+{% extends 'base_2col.html' %}
+
+{% block page_title %}
+{{ article.title }}
+{% endblock page_title %}
+
+{% block left_column %}
+<div class="bread-crumb">
+  <a href="/article/">Article</a> &gt;
+  <a href="{{ article.href }}">{{ article.title }}</a>
+</div>
+<h2>{{ article.title }}</h2>
+<div class="article-content">
+  {{ revision.content|safe }}
+</div>
+{% endblock left_column %}
+
+{% block right_column %}
+<h3></h3>
+<ul>
+  <li>
+    <a href="/article/{{ article.key }}/rev/add?base={{ revision.key }}">
+      Edit
+    </a>
+  </li>
+  <li><a href="/article/{{ article.key }}/rev/">Revisions</a></li>
+</ul>
+
+{% endblock right_column %}
+

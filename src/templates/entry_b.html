@@ -1,0 +1,26 @@
+<div class="blip-entry clearfix" id="blip_{{ p.q.key }}">
+  <div class="left blip-left">
+    {% include 'tiny_user.html' %}
+   </div>
+  {% with p.q as blip %}
+  <div class="blip-body left">
+    <span><a href="{{ p.href }}">{{ p.nickname }}</a></span> {{ blip.text|safe }}
+    <ul id="code"> </ul>
+    <script language="javascript">
+//<!--
+      createAttach('#blip_{{ blip.key }} #code','{{ blip.attachment|safe }}');
+//-->
+    </script>
+    <div class="clear"></div>
+    <div class="blip-footer right">
+      <span>{{ blip.get_date_repr }}</span>
+      <span>
+	<a href="{{ blip.href }}">
+	  <img src="/static/pics/detail.png" title="blip detail">
+	</a>
+      </span>
+    </div>
+  </div>
+  {% endwith %}
+  <div class="clear"></div>
+</div>

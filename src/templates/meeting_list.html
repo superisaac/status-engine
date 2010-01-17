@@ -1,0 +1,19 @@
+{% extends 'base_2col.html' %}
+
+{% block page_title %}Meeting{% endblock page_title %}
+
+{% block left_column %}
+<h3>Rooms</h3>
+{% for meeting in meetings %}
+<div class="meeting-snap">
+  {% for p in meeting.member_profiles %}
+     {% include 'tiny_user.html' %}
+  {% endfor %}
+  {{ meeting.blip_text|safe }}
+  <a href="{{ meeting.href }}">&gt;&gt;</a>
+</div>
+{% endfor %}
+<div class="meeting-new">
+  <a href="/meeting/add">New room &gt;&gt;</a>
+</div>
+{% endblock left_column %}

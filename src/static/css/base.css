@@ -1,0 +1,129 @@
+.clearfix:after {
+        content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+
+.clearfix {
+	display: inline-block;
+}
+
+.span-1 { width: 100px; }
+.span-2 { width: 200px; }
+.span-3 { width: 300px; }
+.span-4 { width: 435px; }
+
+h1, h2, h3, p { margin: 0; }
+ul li { list-style-type:none; }
+
+/*body { font-family: "Comic Sans MS"; } */
+a {  text-decoration: none; }
+.clear { clear: both;  }
+div { margin: 0; padding: 0; }
+
+body { padding: 0; margin: 0; font-size: 16px; }
+div.body { margin: 0 auto; 
+           width: 970px; 
+           min-height: 460px;
+           height: expression(this.height < 460? 460:true);
+           padding-bottom: 40px;
+           border-bottom: 1px solid gray;
+}
+
+ul.error li { color: red; }
+
+div.bread-crumb { margin: 10px 0 4px 0; }
+div.header { background: cadetblue; padding-top: 20px;}
+div.header div.toolbar { margin: 0 auto; width: 970px;}
+div.header a, div.header div.toolbar { color: white; }
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.left { float: left; }
+.right { float: right; }
+
+img { border: 0 none; }
+
+.blip-left { width: 34px; }
+.blip-update { width: 620px; margin: 6px 0 0 0;}
+.blip-update textarea { width: 100%; height: 70px;}
+.blip-update .commands .button { margin-top: 4px; }
+
+div.left-column { width: 660px; }
+div.right-column { width: 300px; }
+
+div.tiny-user { display: inline; }
+div.tiny-user a { padding: 0; margin: 0; }
+div.tiny-user a img { padding: 0; margin: 0; }
+
+div.blip-list { width: 620px; padding: 0; margin: 0;}
+div.blip-entry,
+div.article-entry { border-top: 1px solid #555555; width: 620px; padding: 4px 2px 2px 2px;}
+
+div.blip-entry #ecode img,
+div.blip-entry #ecode embed { vertical-align: text-top; margin: 6px;}
+
+div.blip-entry ul#code,
+div.blip-item ul#code,
+ul#attachments { padding-left: 0; margin-left: 0; }
+
+div.blip-entry ul#code li,
+div.blip-item ul#code li,
+ul#attachments li { float: left; margin: 6px;}
+
+ul#attachments li img,
+ul#attachments li embed,
+ul#attachments li iframe { vertical-align: text-top; }
+
+div.blip-body { margin: 0 2px 2px 6px; width: 578px;}
+div.blip-body span { font-family: "Comic Sans MS"; color: blue;}
+div.blip-footer span { color: gray; font-size: 12px; margin: 0 0 0 6px;}
+
+div#warning {
+              background: #FDFFCE;  width: 100%; padding: 4px 2px; color: blue;
+              /*border: 1px solid #FFBA43;*/
+}
+
+div#require-flash-url #url,
+div#require-image-url #url { width: 366px; }
+
+div#meeting-candidates { padding-left: 20px; }
+
+ul#meeting-members { padding-left: 20px; }
+ul#meeting-members li img
+{ vertical-align: text-top; margin: 0; padding: 0;}
+
+div.meeting-snap { border-top: 1px solid #555555; padding: 10px 2px 2px 2px;}
+div.meeting-new { padding-top: 50px; }
+
+div.blip-item { width: 600px; margin-top: 20px; margin-bottom: 40px;}
+div.blip-item div.blip-text { font-weight: bold; font-size: 24px; margin-bottom: 40px;}
+
+img.attach-image { max-width: 360px; 
+                   width: expression(this.width>360? 360:true); 
+}
+
+.article-left { width: 34px; }
+div.article-body { margin: 0 2px 2px 6px; width: 578px;}
+div.article-footer { color: gray; font-size: 12px; margin: 2px;}
+
+div.article-new { margin-top: 20px; }
+
+.article-edit textarea { width: 600px; height: 200px; margin: 6px 0 0 0;}
+.article-edit span { margin: 6px 0; }
+.article-edit input#id_title { width: 400px; margin: 6px 0;}
+
+table.revision-table { width: 800px; }
+table.revision-table tr th { text-align: left; }
+
+table.revision-table tr td.creator { width: 60px; }
+table.revision-table tr td.rev { width: 600px; }
+
+table.revision-table tr.current td.rev { background: #eeeeee; }
+
+div.intro { padding: 20px; font-size: 18px; min-height: 160px; border-left: 1px solid gray;} 
+div.intro p { margin: 2px 0 10px 0; }

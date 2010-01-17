@@ -1,0 +1,15 @@
+{% extends 'base_2col.html' %}
+
+{% block page_title %}
+Public timeline
+{% endblock page_title %}
+
+{% block left_column %}
+<div class="blip-list clearfix">
+&nbsp;
+ {% for p in blips %}
+   {% include 'entry_b.html' %}
+ {% endfor %}
+</div>
+{% endblock left_column %}
+

@@ -1,0 +1,20 @@
+{% extends 'user_page.html' %}
+{% block page_title %}
+{{ blip.text }}
+{% endblock page_title %}
+
+{% block left_column %}
+<div class="blip-item clearfix" id="blip_{{ blip.key }}">
+  <div class="blip-text">{{ blip.text|safe }}</div>
+  <ul id="code"> </ul>
+</div>
+<div class="clear"></div>
+<div class="blip-item-footer"> {{ profile.fullname }} published {{ blip.get_date_repr }}</div>
+<script language="javascript">
+//<!--
+  createAttach('#blip_{{ blip.key }} #code','{{ blip.attachment|safe }}');
+//-->
+</script>
+
+{% endblock left_column %}
+

@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <link type="text/css" href="/static/css/base.css" rel="stylesheet"/>
+    <link href="/facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/static/js/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="/static/js/site.js"></script>
+    <script type="text/javascript" src="/static/js/attachment.js"></script>
+    <script type="text/javascript" src="/facebox/facebox.js"></script>
+    {% block js_css %}
+    {% endblock js_css %}
+  </head>
+  <body class="{% block page_class %}{% endblock %}">
+    <div class="header">
+      <div class="toolbar">
+	<a href="/public">Lobby</a> |
+	<a href="/article/">Article</a> |
+	{% if not self.get_current_user %}
+	<a href="/signin">Sign in</a> |
+        <a href="/signup">Sign up</a> 
+	{% else %}
+	<a href="/home">Home</a> |
+	<a href="/profile/edit">Edit Profile</a> |
+	<a href="/meeting/">Meeting</a> |
+	<a href="{{ handler.get_logout_url }}">Logout</a>
+	{% endif %}
+      </div>
+    </div>
+    <div id="warning" style="display:none;" class="text-center" onclick="$(this).hide();"></div>
+    <div class="body">
+    {% block body %}
+    {% endblock body %}
+    </div>
+    <div class="footer text-center">
+      <div>
+	<a href="http://status-engine.appspot.com">
+	  <img src="/static/pics/logo.png"/></a>
+      </div>
+    </div>
+  </body>
+</html>

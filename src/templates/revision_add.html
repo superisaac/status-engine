@@ -1,0 +1,33 @@
+{% extends 'base_2col.html' %}
+
+{% block page_title %}
+Edit article to a new revision
+{% endblock page_title %}
+
+{% block left_column %}
+<div class="bread-crumb">
+  <a href="/article/">Article</a> &gt;
+  <a href="{{ article.href }}">{{ article.title }}</a> &gt;
+  Edit
+</div>
+
+<h3>{{ article.title }}</h3>
+<div class="article-edit">
+  <form action="" method="POST">
+    <textarea id="id_content" name="content">{{ content }}</textarea><br/>
+    <input type="submit" value="submit"/> <input type="reset"/>
+  </form>
+</div>
+{% endblock left_column %}
+
+
+{% block js_css %}
+{{ block.super }}
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script language="javascript">
+  $(document).ready(function() {
+    CKEDITOR.replace('id_content', {
+    });
+  });
+</script>
+{% endblock js_css %}

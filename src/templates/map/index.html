@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Map</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={{ map_key }}&hl=en"
+      type="text/javascript"></script>
+    <style type="text/css">
+      body.map,
+      body.map div { margin:0; padding:0; }
+    </style>
+    <script type="text/javascript">
+
+    //<![CDATA[
+    {% if big %};
+      var big = true;
+    {% else %}
+      var big = false;
+    {% endif %}
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map-placeholder"));
+        map.enableScrollWheelZoom();
+        if(big){
+          map.addControl(new GMapTypeControl());
+          map.addControl(new GLargeMapControl());
+        }
+        map.setCenter(new GLatLng({{ lat }}, {{ lng }}), {{ zoom_level }});
+        var marker = new GMarker(map.getCenter(), 
+                       {title:"{{ description }}"});
+        map.addOverlay(marker);
+
+        marker.bindInfoWindowHtml("{{ description }}"); 
+      }
+    }
+
+    //]]>
+    </script>
+  </head>
+  <body class="map" onload="load()" onunload="GUnload()">
+    <div id="map-placeholder" style="{% block place_holder_style %}{{ size_style }}{% endblock %}"></div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+h2. Status engine
+
+Status engine is a site built on Google App Engine for collaborations within small organizations. 
+
+You can update status, paste a image(link), flash video or map, hold meetings and share articles
+
+A demo site is at http://status-engine.appspot.com
+
+h2. Installation
+
+# cd src
+
+# create a python file local_settings.py, copy and override the following variables
+
+** *NEWS_USER*   _user *news* is a pseudo user that notify latest changes within the site._
+
+** *NEWS_PASSWORD* _the password of news user_
+
+** *MAP_KEY*   _apply the map key from "http://code.google.com/apis/maps/signup.html":http://code.google.com/apis/maps/signup.html according to your server address or the map would   
+ not be showed correctly.
+
+
+# cp app.yaml.sample app.yaml
+
+change app.yaml, set application to the name of your google app engine
+
+# deploy to appspot
+
+appcfg.py update src
+
+Index building may take some hours
+
+# Do migration after the indexes are build, by visit http://_yourapp_.appspot.com/siteadmin/migration from a browser
+
+Then the site is ready now.
+ 

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Edit Map</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={{ map_key }}&hl=en"
+      type="text/javascript"></script>
+
+    <style type="text/css">
+      body.map,
+      body.map div { margin:0; padding:0; }
+    </style>
+    <script type="text/javascript">
+
+    //<![CDATA[
+    var marker = undefined;
+    var map;
+    function on_click(overlay, latlng){
+       if(latlng) {
+          if(!marker){
+             marker = new GMarker(latlng, {draggable: true});
+             map.addOverlay(marker);
+           } else {
+             marker.setLatLng(latlng);
+           }
+          //map.setCenter(latlng);
+          var div = document.getElementById('selected_lat');
+          div.innerHTML = "" + latlng.lat();
+
+          div = document.getElementById('selected_lng');
+          div.innerHTML = "" + latlng.lng();
+       }
+    }
+    function on_zoomend(oldLevel, newLevel) {
+        var div = document.getElementById('selected_zoom_level');
+        div.innerHTML = "" + newLevel;
+    }
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map-placeholder"));
+        map.enableScrollWheelZoom();
+          map.addControl(new GMapTypeControl());
+          map.addControl(new GLargeMapControl());
+        map.setCenter(new GLatLng({{ lat }}, {{ lng }}), 2);
+        GEvent.addListener(map, 'click', on_click);
+        GEvent.addListener(map, 'zoomend', on_zoomend);
+      }
+    }
+    //]]>
+    </script>
+  </head>
+  <body class="map" onload="load()" onunload="GUnload()">
+    <div id="selected_lat" style="display:none;">XXX</div>
+    <div id="selected_lng" style="display:none;">XXX</div>
+    <div id="selected_zoom_level" style="display:none;">2</div>
+    <div id="map-placeholder" style="width: 440px; height: 300px;"></div>
+  </body>
+</html>

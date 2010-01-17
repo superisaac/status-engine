@@ -1,0 +1,35 @@
+{% extends 'user_page.html' %}
+
+{% block left_column %}
+{% include 'blip_update_form.html' %}
+<div class="blip-list clearfix">
+ {% for p in blips %}
+   {% include 'entry_a.html' %}
+ {% endfor %}
+</div>
+<p>
+  {% if paginator.has_prev %}
+  <a href="?page={{ paginator.prev_page }}">&lt;&lt;Newer</a>
+  {% endif %}
+
+  {% if paginator.has_next %}
+  <a href="?page={{ paginator.next_page }}">Older&gt;&gt;</a>
+  {% endif %}
+</p>
+
+{% endblock left_column %}
+
+{% block js_css %}
+ <script language="javascript">
+   $(document).ready(function($) {
+      $('.blip-footer .delete a').click(function() {
+         if(confirm('Really delete the blip?')) {
+           return true;
+         } else {
+           return false;
+         }
+      });
+   });
+ </script>
+
+{% endblock js_css %}

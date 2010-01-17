@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block body %}
+<div class="left span-4 signin-panel">
+<h1>Login required</h1>
+{% for err in errors %}
+<p>{{ err }}</p>
+{% endfor %}
+<form action="{{ self.request.uri }}" method="POST">
+  <span> Email: </span> <br/>
+  <input type="email" name="email" value=""/><br/>
+  <span> Password: </span><br/>
+  <input type="password" name="password" value=""/><br/>
+  <input type="submit" value="OK"/> <input type="reset"/>
+</form>
+{% if using_google %}
+Or <a href="{{ google_login_url }}">Login using google acount</a>
+{% endif %}
+</div>
+<div class="left intro span-4">
+  <p><font color="powderblu">Status</font> <font color="violet">engine</font>
+    is a site for collaborations within small organizations. </p>
+  <p>You can update <a href="/public">status</a>, paste a image(link), flash video or map,
+    hold <a href="/meeting/">meetings</a> and share <a href="/article/">articles</a>.</p>
+  <p>Enjoy!</p>
+</div>
+<div class="clear"></div>
+{% endblock body %}

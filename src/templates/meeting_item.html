@@ -1,0 +1,78 @@
+{% extends 'base_2col.html' %}
+{% block page_title %}Meeting {% endblock %}
+{% block left_column %}
+
+{% include 'meeting_blip_update_form.html' %}
+
+<div class="blip-list clearfix">
+ {% for p in blips %}
+   {% include 'entry_c.html' %}
+ {% endfor %}
+</div>
+<p>
+  {% if paginator.has_prev %}
+  <a href="?page={{ paginator.prev_page }}">&lt;&lt;Newer</a>
+  {% endif %}
+
+  {% if paginator.has_next %}
+  <a href="?page={{ paginator.next_page }}">Older&gt;&gt;</a>
+  {% endif %}
+</p>
+{% endblock left_column %}
+
+{% block right_column %}
+<h3>Members</h3>
+<ul id="meeting-members">
+{% for p in admin_profiles %}
+   <li>
+     {% include 'tiny_user.html' %} {{ p.fullname }} <span title="Administrator">*</span>
+   </li>
+{% endfor %}
+
+{% for p in member_profiles %}
+   <li>{% include 'tiny_user.html' %} {{ p.fullname }}
+     <a href="/meeting/{{ meeting.key }}/{{ p.nickname }}/delete" title="delete membership">
+       <img src="/static/pics/delete.png"/>
+     </a>
+   </li>
+{% endfor %}
+</ul>
+
+<h3 title="The guys you are following.">Candidates</h3>
+<div id="meeting-candidates">
+The guys you are following<br/>
+  <form id="add-member" action="/meeting/{{ meeting.key }}/member/add" method="POST">
+    <select name="user_name">
+      <option value="">------</option>
+      {% for p in followee_profiles %}
+      <option value="{{ p.nickname }}">{{ p.fullname }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="invite"/>
+  </form>
+</div>
+
+{% endblock right_column %}
+
+{% block js_css %}
+ <script language="javascript">
+   $(document).ready(function($) {
+      $('.blip-footer .delete a').click(function() {
+         if(confirm('Really delete the blip?')) {
+           return true;
+         } else {
+           return false;
+         }
+      });
+      $('form#add-member').submit(function() {
+        if($('select', this).val()) {
+           return true;
+        } else {
+           warn('A user must be selected!');
+           return false;
+        }
+      });
+   });
+ </script>
+
+{% endblock js_css %}

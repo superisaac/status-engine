@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block page_title %}
+
+{% endblock page_title %}
+
+{% block body %}
+<h2>A list of articles</h2>
+<p>&nbsp; </p>
+{% for p in articles %}
+  {% with p.q as article %}
+<div class="clearfix article-entry">
+  <div class="left article-left">
+    {% include 'tiny_user.html' %}
+  </div>
+
+  <div class="left article-body">
+    <a href="{{ article.href }}">{{ article.title }}</a>
+
+    <div class="clear"></div>
+    <div class="article-footer">
+      {{ p.nickname }} created {{ article.get_date_repr }}/
+      last modify is at {{ article.get_modified_date_repr }}
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+  {% endwith %}
+{% endfor %}
+<div class="article-new">
+  <a href="/article/add">New article >></a>
+</div>
+{% endblock body %}

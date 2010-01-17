@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="bread-crumb">
+  <a href="/article/">Article</a> &gt;
+  <a href="{{ article.href }}">{{ article.title }}</a> &gt;
+  Revisions
+</div>
+
+<h2>Revision list</h2>
+<form action="/article/{{ article.key }}/rev/set" method="POST">
+
+<table class="revision-table">
+<tr>
+  <th>Creator</th>
+  <th>Revision</th>
+  <th>Choose</th>
+</tr>
+{% with article.get_current_revision as current_rev %}
+{% for p in revisions %}
+{% with p.q as revision %}
+<tr  {% ifequal revision.key current_rev.key %}class="current" {% endifequal %}>
+  <td class="creator">
+    {% include 'tiny_user.html' %}
+  </td>
+  <td class="rev">
+    <a href="{{ revision.href }}">{{ revision.get_abstract }}</a>
+  </td>
+  <td class="make-default">
+    <input type="radio" name="revision_key" 
+    {% ifequal revision.key current_rev.key %}checked="checked" {% endifequal %}
+	   value="{{ revision.key }}"/>
+  </td>
+
+</tr>
+{% endwith %}
+{% endfor %}
+{% endwith %}
+</table>
+<input type="submit" class="button" value="Set current revision"/>
+</form>
+{% endblock body %}
+
+{% block js_css %}
+<script language="javascript">
+  function radio_changed(radio) {
+     console.info($(radio).val());
+  }
+</script>
+{% endblock js_css %}

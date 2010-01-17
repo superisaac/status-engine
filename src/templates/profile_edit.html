@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% for err in errors %}
+<p>{{ err }}</p>
+{% endfor %}
+
+<form action="/profile/edit" method="POST" enctype="multipart/form-data">
+  <span>Nick name</span><br/>
+  <input type="input" name="nickname" value="{{ profile.nickname }}"><br/>
+
+  <span>Full name</span><br/>
+  <input type="input" name="fullname" value="{{ profile.fullname }}"><br/>
+
+  <span>Avatar</span><br/>
+  {% if profile.avatar %}
+     <img src="{{ profile.avatar.href }}"/><br/>
+  {% endif %}
+  <input type="file" name="avatar"><br/>
+  <input type="submit" value="OK">
+</form>
+{% endblock body %}

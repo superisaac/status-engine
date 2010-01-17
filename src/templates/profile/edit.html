@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<form action="/profile/edit" method="POST" enctype="multipart/form-data">
+  <span>Nickname</span><br/>
+  <input type="input" name="nickname" value="{{ profile.nickname }}"><br/>
+  
+  <span>Avatar</span><br/>
+  <input type="file" name="avatar"><br/>
+  <input type="submit" value="OK">
+</form>
+{% endblock body %}
